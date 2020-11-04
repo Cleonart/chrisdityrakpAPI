@@ -5,7 +5,7 @@
 	$data = json_decode($dale->kueri("SELECT * FROM `publikasi`"));
 
 	// reconstruksi data
-	$head = array("Judul Jurnal", "Tahun", "Nama Pengusung", "Jurnal");
+	$head = array("Judul Jurnal", "Tanggal Publikasi", "Nama Penulis", "Jurnal");
 	$body = [];
 
 	for($i = 0; $i < sizeof($data); $i++){
