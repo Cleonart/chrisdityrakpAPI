@@ -2,7 +2,7 @@
 	
 	require '../api_conf.php';
 
-	$data = $dale->kueri("SELECT * FROM `jurnal`");
+	$data = json_decode($dale->kueri("SELECT * FROM `publikasi`"));
 	
 	echo $data;
 
