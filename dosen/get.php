@@ -5,7 +5,7 @@
 	$data = json_decode($dale->kueri("SELECT * FROM `dosen` as a INNER JOIN `fakultas` as b on a.fakultas_id = b.fakultas_id"));
 
 	// reconstruksi data
-	$head = array("ID Dosen", "Nama Dosen", "Fakultas", "hizkia");
+	$head = array("ID Dosen", "Nama Dosen", "Fakultas");
 	$body = [];
 
 	for($i = 0; $i < sizeof($data); $i++){
