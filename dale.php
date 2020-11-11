@@ -101,7 +101,7 @@ class dale{
 
                     // execute query from sql command
                     $result = $this->connect->query($sql_query);
-
+                    
                     if($editManual == 0){
                         // initialize and fetch the data
                         $data = [];
@@ -112,6 +112,7 @@ class dale{
                             $counter++;
                         }
                     }
+
                     else if($editManual == 1){
                         $data = $result;
                     }
