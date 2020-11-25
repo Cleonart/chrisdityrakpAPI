@@ -3,7 +3,7 @@
 	require '../api_conf.php';
 
 	// reconstruksi data
-	$head = array("Judul Artikel", "Author", "Halaman", "Keyword");
+	$head = array("Judul Artikel", "Penulis", "Halaman", "Kata Kunci");
 	$body = [];
 
 	// JOURNALS OPTIONS
@@ -49,6 +49,7 @@
 		$artikel_keyword = $article[$i] -> artikel_keyword;
 		$artikel_halaman = $article[$i] -> artikel_halaman; 
 		$artikel_filepath = $article[$i] -> artikel_filepath;
+		$jurnal_edisi_id = $article[$i] -> jurnal_edisi_id;
 
 		//AUTHOR
 		$kry = "";
@@ -65,13 +66,12 @@
 			$artikel_penulis[$j] = ucwords($author[$j] -> nama_artikel_penulis) ;
 		}
 
-		
-
 		$body[$i][0] = array('title' => $artikel_id, 'type' => 'id');
-		$body[$i][1] = array('title' => $artikel_judul, 'type' => 'text');
-		$body[$i][2] = array('title' => $artikel_penulis, 'type' => 'text');
-		$body[$i][3] = array('title' => $artikel_halaman, 'type' => 'text');
-		$body[$i][4] = array('title' => $artikel_keyword, 'type' => 'text');
+		$body[$i][1] = array('title' => $jurnal_edisi_id, 'type' => 'id');
+		$body[$i][2] = array('title' => $artikel_judul, 'type' => 'text');
+		$body[$i][3] = array('title' => $artikel_penulis, 'type' => 'text');
+		$body[$i][4] = array('title' => $artikel_halaman, 'type' => 'text');
+		$body[$i][5] = array('title' => $artikel_keyword, 'type' => 'text');
 	}
 
 	// DATA PACK

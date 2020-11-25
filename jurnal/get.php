@@ -21,7 +21,7 @@
 	}
 
 	// JOURNAL EDITION
-	$journals_edition = json_decode($dale->kueri("SELECT * FROM `jurnal` as a INNER JOIN `jurnal_edisi` as b ON a.jurnal_id = b.jurnal_id"));
+	$journals_edition = json_decode($dale->kueri("SELECT * FROM `jurnal` as a INNER JOIN `jurnal_edisi` as b ON a.jurnal_id = b.jurnal_id WHERE `jurnal_status` = 1"));
 	for($i = 0; $i < sizeof($journals_edition); $i++){
 		$jurnal_id  = $journals_edition[$i] -> jurnal_id;
 		$jurnal_nama  = $journals_edition[$i] -> jurnal_nama;
@@ -35,6 +35,7 @@
 		$body[$i][3] = array('title' => $jurnal_edisi_tahun, 'type' => 'text');
 		$body[$i][4] = array('title' => $jurnal_edisi_publish, 'type' => 'text');
 	}
+
 
 	// DATA PACK
 	$dataPack = array('head' => $head, 'body' => $body, 'option' => $journals_option);
