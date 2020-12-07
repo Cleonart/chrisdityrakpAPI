@@ -17,7 +17,7 @@
 		$jurnal_id = $journals_temp[$i] -> jurnal_id;
 		$jurnal_nama = $journals_temp[$i] -> jurnal_nama;
 		$index++;
-		$journals_option[$index] = array("value" => $jurnal_id, "text" => "Jurnal " . $jurnal_nama);
+		$journals_option[$index] = array("value" => $jurnal_id, "text" => $jurnal_nama);
 	}
 
 	// JOURNAL EDITION
@@ -29,7 +29,7 @@
 		$jurnal_id  = $journals_edition[$i] -> jurnal_id;
 		$jurnal_edisi_id  = $journals_edition[$i] -> jurnal_edisi_id;
 		$jurnal_edisi_tahun   = $journals_edition[$i] -> jurnal_edisi_tahun;
-		$jurnal_edisi = "Volume " . $journals_edition[$i] -> jurnal_edisi_volume . " No. " . $journals_edition[$i] -> jurnal_edisi_nomor . " Tahun " . $jurnal_edisi_tahun;
+		$jurnal_edisi = "Vol " . $journals_edition[$i] -> jurnal_edisi_volume . " No. " . $journals_edition[$i] -> jurnal_edisi_nomor . " (" . $jurnal_edisi_tahun. ")";
 		$index++;
 		$edition_journal[$index] = array('value' => $jurnal_edisi_id, 'text' => $jurnal_edisi, 'jurnal_id' => $jurnal_id);
 	}
