@@ -28,7 +28,7 @@
 
 	}
 
-// DATA PACK
+	// DATA PACK
 	$dataPack = array('head' => $head, 'body' => $body);
 	echo json_encode($dataPack);
 

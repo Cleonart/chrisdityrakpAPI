@@ -16,7 +16,9 @@
 	$kry .= "INNER JOIN `fakultas` as b ";
 	$kry .= "ON a.pengguna_institusi = b.fakultas_id ";
 
-	if (isset($_GET['id'])) $kry .= "WHERE `pengguna_id` = '".$_GET['id']."'"; 
+	if (isset($_GET['id'])){
+		$kry .= "WHERE `pengguna_id` = '".$_GET['id']."'"; 
+	}
 
 	$data = $dale->kueri($kry);
 	$data = json_decode($data);
@@ -53,11 +55,14 @@
 		}
 	}
 	else{
-		if($_GET['id'] == 'tambah'){
-			$body[0] = zipToInput("", 'text', 'Nama Lengkap', "Masukan Nama Pengguna");
-			$body[1] = zipToInput("", 'text', 'Username', "Masukan Username");
-			$body[2] = zipToInput("", 'text', 'Password', "Masukan Password");
-			$body[3] = zipToInput(null, 'select', 'Pilih Institusi', "Pilih Institusi", getInstitusi($dale));
+		if(isset($_GET['id'])){
+			if($_GET['id'] == 'tambah'){
+				$body[0] = zipToInput("", 'id', '', "");
+				$body[1] = zipToInput("", 'text', 'Nama Lengkap', "Masukan Nama Pengguna");
+				$body[2] = zipToInput("", 'text', 'Username', "Masukan Username");
+				$body[3] = zipToInput("", 'text', 'Password', "Masukan Password");
+				$body[4] = zipToInput(null, 'select', 'Pilih Institusi', "Pilih Institusi", getInstitusi($dale));
+			}
 		}
 	}
 
