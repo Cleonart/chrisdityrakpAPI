@@ -12,7 +12,7 @@
 	$password = $data -> password;
 
 	$kry = "";
-	$kry .= "SELECT `pengguna_nama`,`pengguna_status` FROM pengguna ";
+	$kry .= "SELECT `pengguna_id`,`pengguna_nama`,`pengguna_status` FROM pengguna ";
 	$kry .= "WHERE `username` = '".$username."' AND `pengguna_sandi` = '".$password."'";
 
 	$login_data = $dale->kueri($kry);
@@ -20,6 +20,7 @@
 
 	if(sizeof($login_data) > 0){
 		echo json_encode(array("error_code"    => "success", 
+							   'session'       => $login_data[0] -> pengguna_id,
 							   "pengguna_nama" => $login_data[0] -> pengguna_nama, 
 							   'stats'         => md5($login_data[0] -> pengguna_status)));
 	}
