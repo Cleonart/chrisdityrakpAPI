@@ -1,27 +1,33 @@
 <?php
 	
 	require '../api_conf.php';
+	require '../functions.php';
 
 	// reconstruksi data
 	$head = array("Judul Jurnal", "Edisi", "Tahun", "Tanggal Publikasi");
 	$body = [];
 
-	// JOURNALS OPTIONS
-	$journals_temp = json_decode($dale->kueri("SELECT * FROM `jurnal`"));
-	$journals_option = [];
+	$id = $_GET['id'];
 
-	/* DUMMY */
-	$index = 0;
-	$journals_option[$index] = array("value" => null, "text" => "Pilih Jurnal");
-	for($i = 0; $i < sizeof($journals_temp); $i++){
-		$jurnal_id = $journals_temp[$i] -> jurnal_id;
-		$jurnal_nama = $journals_temp[$i] -> jurnal_nama;
-		$index++;
-		$journals_option[$index] = array("value" => $jurnal_id, "text" => "Jurnal " . $jurnal_nama);
+	// JOURNALS OPTIONS
+	$journals_option = getJurnalByUserId($dale, $id);
+	$user_detail     = getUserDetail($dale, $id);
+
+
+
+	$qry  = "SELECT * FROM `jurnal` as a ";
+	$qry .= "INNER JOIN `jurnal_edisi` as b ";
+	$qry .= "ON a.jurnal_id = b.jurnal_id ";
+	$qry .= "WHERE `jurnal_status` = 1 ";
+
+	if($user_detail -> pengguna_status == '2'){
+		$qry .= "AND `institusi_id` = '".$user_detail -> pengguna_institusi."' ";
 	}
 
+	$qry .= "ORDER BY `jurnal_nama` ASC, `jurnal_edisi_tahun` ASC, `jurnal_edisi_volume` ASC, `jurnal_edisi_nomor` ASC ";
+
 	// JOURNAL EDITION
-	$journals_edition = json_decode($dale->kueri("SELECT * FROM `jurnal` as a INNER JOIN `jurnal_edisi` as b ON a.jurnal_id = b.jurnal_id WHERE `jurnal_status` = 1"));
+	$journals_edition = json_decode($dale->kueri($qry));
 	for($i = 0; $i < sizeof($journals_edition); $i++){
 		$jurnal_id  = $journals_edition[$i] -> jurnal_id;
 		$jurnal_nama  = $journals_edition[$i] -> jurnal_nama;

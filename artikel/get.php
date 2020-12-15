@@ -38,6 +38,7 @@
 			$artikel_halaman = $article[$i] -> artikel_halaman; 
 			$artikel_filepath = $article[$i] -> artikel_filepath;
 			$jurnal_edisi_id = $article[$i] -> jurnal_edisi_id;
+			$jurnal_id =  $article[$i] -> jurnal_id;
 
 			//AUTHOR
 			$kry = "";
@@ -46,7 +47,6 @@
 			$kry .= "ON a.artikel_id = b.artikel_id ";
 			$kry .= "WHERE b.artikel_id = '".$artikel_id."' ";
 			$kry .= "ORDER BY `status_artikel_penulis` ASC";
-			
 
 			$author = json_decode($dale->kueri($kry));
 			$artikel_penulis = [];
@@ -60,6 +60,7 @@
 			$body[$i][3] = array('title' => $artikel_penulis, 'type' => 'text');
 			$body[$i][4] = array('title' => $artikel_halaman, 'type' => 'text');
 			$body[$i][5] = array('title' => $artikel_keyword, 'type' => 'text');
+			$body[$i][6] = array('title' => $jurnal_id, 'type' => 'id');
 		}
 
 		// DATA PACK

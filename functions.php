@@ -18,6 +18,21 @@
 		return ($body);
 	}
 
+	function getNumArray($start, $end, $default=0, $abbv=''){
+
+		$body = [];
+		$current = $start;
+		$body[0] = array('value' => null, 'text' => $default);
+		$index = 1;
+
+		for($index; $current <= $end; $index++){
+			$body[$index] = array('value' => $current, 'text' => $abbv . ' ' . $current);
+			$current++;
+		}
+
+		return ($body);
+	}
+
 	function getUserDetail($dale, $id){
 		
 		$kry = "SELECT * FROM pengguna ";
@@ -35,12 +50,12 @@
 
 		// mengambil semua data jurnal jika berstatus admin
 		if($user_detail -> pengguna_status == 1){
-			$journals_temp = json_decode($dale->kueri("SELECT * FROM `jurnal`"));
+			$journals_temp = json_decode($dale->kueri("SELECT * FROM `jurnal` WHERE `jurnal_status` = 1"));
 		}
 
 		// mengambil hanya data jurnal dengan institusi yang sama
 		else if($user_detail -> pengguna_status == 2){
-			$journals_temp = json_decode($dale->kueri("SELECT * FROM `jurnal` WHERE `institusi_id` = '".$user_detail -> pengguna_institusi."'"));
+			$journals_temp = json_decode($dale->kueri("SELECT * FROM `jurnal` WHERE `institusi_id` = '".$user_detail -> pengguna_institusi."' AND `jurnal_status` = 1"));
 		}
 
 		$journals_option = [];
